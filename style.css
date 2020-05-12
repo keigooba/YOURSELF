@@ -1,0 +1,279 @@
+body{
+  padding: 0;
+  margin: 0;
+  line-height: 150%;
+  color: #444;
+}
+p{
+  margin: 0 auto;
+}
+/* トップバナー */
+#top-baner{
+  height: 600px;
+  display: block;
+}
+/* ヘッダー部分 */
+header{
+  height: 200px;
+  overflow: hidden;
+  background: #f6f5f5;
+}
+.header-logo{
+  float: left;
+  height: 150px;
+  width: 150px;
+  padding: 20px;
+  margin: 20px;
+}
+.header-logo img{
+  width: 100%;
+}
+/* ナビゲーション */
+#top-nav{
+  float: right;
+  width: 600px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+nav a{
+  text-decoration: none;
+  color: #444;
+  padding: 10px 15px;
+  font-size: 14px;
+}
+nav a:hover{
+  text-decoration: underline;
+}
+#top-nav ul{
+  width: 550px;
+  height: 40px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  list-style: none;
+}
+#top-nav ul li{
+  float: left;
+}
+/* メイン画像 */
+.top-image{
+  height: 500px;
+  width: 70%;
+  margin: 0 auto;
+  position: relative;
+}
+.top-image img{
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  opacity:0.8;
+}
+.top-imagetext{
+  height: 250px;
+  width: 100%;
+  position: absolute;
+  top: 125px;
+  text-align: center;
+}
+.top-imagetext p{
+  color: red;
+  font-size: 20px;
+  font-weight:bold;
+  padding: 20px;
+}
+.btn{
+  margin: 0 auto;
+  padding: 15px 30px;
+  border-radius:5px;
+  font-size: 18px;
+  color:white;
+}
+.btn-signup{
+  background-color: rgb(41,167,225,1.0);
+  margin-top: 50px;
+}
+.btn-signup:hover{
+  cursor: pointer;
+  background: rgb(41,167,225,0.7);
+}
+
+/* コンテンツ幅 */
+.site-width{
+  width: 980px;
+  margin: 0 auto;
+}
+section h1.title{
+  text-align: center;
+  font-family: 'Montserrat',sans-serif;
+  margin-bottom: 50px;
+}
+#about,#merit,#recruit,#contact{
+  margin-top: 30px;
+  margin-bottom: 80px;
+}
+.about-wrap{
+  overflow:hidden;
+}
+.about-wrap img{
+  width: 25%;
+  float: left;
+  margin-right: 30px;
+}
+.about-text{
+  width: 70%;
+  float: left;
+}
+#merit{
+  overflow: hidden;
+}
+/* パネル */
+.panel{
+  width: 30%;
+  margin: 0 15px;
+  float:left;
+  box-sizing: border-box;
+  min-height: 380px;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+}
+.panel h2{
+  text-align: center;
+  color: #333;
+}
+.panel1{
+  background: url(img/business-card.jpg);
+  background-size:cover;
+  background-position:center;
+}
+.panel2{
+  background: url(img/career-paper.png);
+  background-size:cover;
+  background-position:center;
+}
+.panel3{
+  background: url(img/value-know.png);
+  background-size:cover;
+  background-position:center;
+}
+/* テーブル */
+table{
+  background: #f6f5f5;
+  width: 100%;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: left;
+  font-size: 14px;
+}
+th,td{
+  padding: 5px 0;
+  border-bottom: 1px dotted #ccc;
+}
+table tbody th{
+  color: rgb(142,130,113);
+}
+#merit{
+  overflow: hidden;
+}
+
+/* フォーム */
+form{
+  width: 50%;
+  margin: 0 auto;
+  font-size: 14px;
+}
+input,textarea{
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+#name-group{
+  width: 100%;
+  height: 80px;
+}
+.labelName{
+  width: 45%;
+  float:left;
+  margin-right: 10px;
+}
+input[type="text"]{
+  width: 100%;
+  background: #f6f5f5;
+  height:40px;
+  float:left;
+  border: none;
+  padding: 10px;
+  box-sizing: border-box;
+}
+input[type="tel"]{
+  width: 80%;
+  height: 40px;
+  background: #f6f5f5;
+  border: none;
+  padding: 10px;
+  box-sizing: border-box;
+}
+input[type="email"]{
+  width: 80%;
+  height: 40px;
+  background: #f6f5f5;
+  border: none;
+  padding: 10px;
+  box-sizing: border-box;
+}
+textarea{
+  width: 100%;
+  height: 200px;
+  padding: 10px;
+  background: #f6f5f5;
+  box-sizing: border-box;
+  border: none;
+}
+input[type="submit"]{
+  float: right;
+  padding: 15px 30px;
+  background: #333;
+  color: white;
+  border: none;
+  box-sizing:border-box;
+}
+#contact{
+  margin-bottom: 150px;
+}
+/* フッター */
+footer{
+  background: #333;
+  padding: 15px;
+  color: #f6f5f5;
+  text-align: center;
+  font-size: 12px;
+}
+footer a{
+  color: #f6f5f5;
+}
+.help-block{
+  font-size: 12px;
+  font-weight: bold;
+}
+/* エラー発生時 */
+.has-error input, .has-error textarea{
+  border: 3px solid #ff4d4b;
+}
+.has-error .help-block,.has-error label,.has-error .counter-container{
+  color: #ff4d4b;
+}
+
+/* サクセス時 */
+.has-success input,.has-success textarea{
+  border: 1px solid #2fb4ce;
+}
+.has-success .help-block,.has-success label,.has-success .counter-container{
+  color: #2fb4ce;
+}
