@@ -267,23 +267,39 @@ function getErrMsg($key){
 //================================
 //DB接続関数
 function dbConnect(){
-  //DBへの接続準備
-  $dsn = 'mysql:dbname=yourself;host=localhost;charset=utf8';
-  $user = 'root';
-  $password = 'root';
+  $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+  $db['dbname'] = ltrim($db['path'], '/');
+  $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+  $user = $db['user'];
+  $password = $db['pass'];
   $options = array(
-    // SQL実行失敗時にはエラーコードのみ設定
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
-    // デフォルトフェッチモードを連想配列形式に設定
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
-    // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
-    PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+    PDO::MYSQL_ATTR_USE_BUFFERED_QUERY =>true,
   );
-  // PDOオブジェクト生成（DBへ接続）
-  $dbh = new PDO($dsn, $user, $password, $options);
+  $dbh = new PDO($dsn,$user,$password,$options);
   return $dbh;
 }
+// function dbConnect(){
+//   //DBへの接続準備
+//   $db = parse_url($_SERVER['mysql://b9d92285910a3b:e2393b7f@us-cdbr-east-06.cleardb.net/heroku_884c8eb5ad8f622?reconnect=true']);
+//   $db['heroku_884c8eb5ad8f622'] = ltrim($db['path'], '/');
+//   $dsn = "mysql:host={$db['us-cdbr-east-06.cleardb.net']};dbname={$db['dbname']};charset=utf8";
+//   $user = $db['user'];
+//   $password = 'root';
+//   $options = array(
+//     // SQL実行失敗時にはエラーコードのみ設定
+//     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+//     // デフォルトフェッチモードを連想配列形式に設定
+//     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+//     // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
+//     // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
+//     PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
+//   );
+//   // PDOオブジェクト生成（DBへ接続）
+//   $dbh = new PDO($dsn, $user, $password, $options);
+//   return $dbh;
+// }
 //SQL実行関数 例外処理をしていることを強調するため否定形
 function queryPost($dbh, $sql, $data){
   //クエリー作成
