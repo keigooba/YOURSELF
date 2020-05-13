@@ -75,14 +75,14 @@ if(!empty($_POST)){
 本メールアドレス宛にパスワードの再発行を致しました。
 下記のURLにて再発行パスワードをご入力頂き、ログインください。
 
-ログインページ：http://localhost:8888/webservice_practice07/login.php
+ログインページ：https://yourself8989.herokuapp.com/PHP/login.php
 再発行パスワード：{$pass}
 ※ログイン後、パスワードのご変更をお願い致します
 
 ////////////////////////////////////////
-ウェブカツマーケットカスタマーセンター
-URL  http://webukatu.com/
-E-mail info@webukatu.com
+yourself株式会社
+URL  https://yourself8989.herokuapp.com
+E-mail keigo2356@gmail.com
 ////////////////////////////////////////
 EOT;
                         sendMail($from, $to, $subject, $comment);
