@@ -24,7 +24,7 @@ if(!is_int((int)$currentPageNum)){
   header("Location:index.php");  //トップページへ
 }
 // 表示件数
-$listSpan = 15;
+$listSpan = 20;
 // 現在の表示レコード先頭を算出
 $currentMinNum = (($currentPageNum-1)*$listSpan); //1ページ目なら(1-1)*15 = 0, 2ページ目なら(2-1)*15 = 15
 // DBからユーザーデータを取得(total,total_page,data)

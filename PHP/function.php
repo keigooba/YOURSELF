@@ -11,7 +11,7 @@ ini_set('error_log','php.log');
 // デバッグ
 //================================
 //デバッグフラグ
-$debug_flg = true;
+$debug_flg = false;
 //デバッグログ関数
 function debug($str){
   global $debug_flg;
@@ -335,7 +335,7 @@ function getUser($u_id){
     error_log('エラー発生:' . $e->getMessage());
   }
 }
-function getUserList($currentMinNum = 1, $span = 15){
+function getUserList($currentMinNum = 1, $span = 20){
   debug('ユーザー情報を取得します。');
   //例外処理
   try{
