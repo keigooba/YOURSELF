@@ -23,6 +23,12 @@ if(!empty($_POST)){
   debug('POST送信があります。');
   debug('POST情報：'.print_r($_POST,true));
 
+  //ゲストユーザーかどうか確認
+  if($_SESSION['user_id'] = 1){
+    GuestUser();
+    return  header("Location:mypage.php");
+  }
+
   // 変数にユーザー情報を代入
   $pass_old = $_POST['pass_old'];
   $pass_new = $_POST['pass_new'];

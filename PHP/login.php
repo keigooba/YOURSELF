@@ -107,34 +107,39 @@ require('header.php');
 </p>
 <body>
   <div id="main" class="site-width">
-    <div id="login" style="margin-top:50px;">
-      <div id="signup-block"><i class="fas fa-sign-in-alt"></i>ログイン</a></div>
-      <div class="area-msg"><?php if(!empty($err_msg['common'])) echo $err_msg['common']; ?></div>
-      <form action="" method="post" style="width:500px; margin:0 auto;">
+  <div class="guest-container">
+    ゲストユーザーの方は以下の名前・メールアドレス・パスワードを使用して下さい。
+    <p><i class="fas fa-user-alt"></i>名前：guest</p>
+    <p><i class="far fa-envelope"></i>メールアドレス：guest@mail.com</p>
+    <p><i class="fas fa-unlock-alt"></i>パスワード：guestmail</p>
+  </div>
+  <div id="login" style="margin-top:50px;">
+    <div id="signup-block"><i class="fas fa-sign-in-alt"></i>ログイン</a></div>
+    <div class="area-msg"><?php if(!empty($err_msg['common'])) echo $err_msg['common']; ?></div>
+    <form action="" method="post" style="width:500px; margin:0 auto;">
 
-        <label>名前 ※名前のみ入力してください
-          <input type="text" name="name" placeholder="名前" value="<?php if(!empty($_POST['name'])) echo $_POST['name'];?>">
-          <div class="err_msg"><?php if(!empty($err_msg['name'])) echo $err_msg['name']; ?>
-          </div>
-        </label>
-        <label>メールアドレス
-          <input type="email" name="email" placeholder="メールアドレス" value="<?php if(!empty($_POST['email'])) echo $_POST['email']; ?>">
-          <div class="err_msg"><?php if(!empty($err_msg['email'])) echo $err_msg['email']; ?></div>
-        </label>
-        <label>パスワード ※半角英数8文字以上
-          <input type="password" name="pass" placeholder="パスワード" value="<?php if(!empty($_POST['pass'])) echo $_POST['pass']; ?>">
-          <div class="err_msg"><?php if(!empty($err_msg['pass'])) echo $err_msg['pass']; ?>
-          </div>
-        </label>
-        <label>
-          <input type="checkbox" name="pass_save">次回ログインを省略する
-        </label>
-        <input type="submit" value="ログイン">
-        <div  class="passRemind">パスワードを忘れた方は<a href="passRemindSend.php">こちら</a>
-       </div>
-      </form>
-      
-    </div> 
+      <label>名前 ※名前のみ入力してください
+        <input type="text" name="name" placeholder="名前" value="<?php if(!empty($_POST['name'])) echo $_POST['name'];?>">
+        <div class="err_msg"><?php if(!empty($err_msg['name'])) echo $err_msg['name']; ?>
+        </div>
+      </label>
+      <label>メールアドレス
+        <input type="email" name="email" placeholder="メールアドレス" value="<?php if(!empty($_POST['email'])) echo $_POST['email']; ?>">
+        <div class="err_msg"><?php if(!empty($err_msg['email'])) echo $err_msg['email']; ?></div>
+      </label>
+      <label>パスワード ※半角英数8文字以上
+        <input type="password" name="pass" placeholder="パスワード" value="<?php if(!empty($_POST['pass'])) echo $_POST['pass']; ?>">
+        <div class="err_msg"><?php if(!empty($err_msg['pass'])) echo $err_msg['pass']; ?>
+        </div>
+      </label>
+      <label>
+        <input type="checkbox" name="pass_save">次回ログインを省略する
+      </label>
+      <input type="submit" value="ログイン">
+      <div  class="passRemind">パスワードを忘れた方は<a href="passRemindSend.php">こちら</a>
+      </div>
+    </form>
+  </div> 
   </div>
   <?php
   require('footer.php');

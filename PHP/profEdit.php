@@ -26,6 +26,12 @@ if(!empty($_POST)){
 	debug('POST情報：'.print_r($_POST,true));
 	debug('FILE情報：'.print_r($_FILES,true));
 
+	//ゲストユーザーかどうか確認
+	if($_SESSION['user_id'] = 1){
+		GuestUser();
+		return  header("Location:mypage.php");
+	}
+
 	//変数にユーザー情報を代入
 	$surname=$_POST['surname'];
 	$name=$_POST['name'];

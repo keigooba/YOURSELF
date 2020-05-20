@@ -17,6 +17,13 @@ require('auth.php');
 // post送信されていた場合
 if(!empty($_POST)){
     debug('POST送信があります ');
+
+    //ゲストユーザーかどうか確認
+    if($_SESSION['user_id'] = 1){
+        GuestUser();
+        return  header("Location:mypage.php");
+    }
+
     //例外処理
     try {
         //DBへ接続

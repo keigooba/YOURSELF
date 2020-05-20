@@ -74,6 +74,7 @@ define('SUC01','パスワードを変更しました');
 define('SUC02','プロフィールを変更しました');
 define('SUC03','メールを送信しました');
 define('SUC04','が参加しました。');
+define('SUC05','ゲストユーザーは使用出来ません。');
 
 //================================
 // グローバル変数
@@ -623,4 +624,9 @@ function showImg($path){
   }else{
     return $path;
   }
+}
+// ゲストユーザーチェック関数
+function GuestUser(){
+  $_SESSION['msg_success'] = SUC05;
+  debug('ゲストユーザーは使用出来ません。');
 }
