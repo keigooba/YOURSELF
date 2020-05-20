@@ -847,3 +847,18 @@ label.err input, label.err select{
 .list-table > .table > tbody td a {
   color:rgb(181,165,137);
 }
+/* ゲストユーザー */
+.guest-container{
+  width:60%;
+  padding: 10px;
+  box-sizing:border-box;
+  text-align: center;
+  margin: 0 auto;
+  border: 5px dotted #43a2e9;
+}
+.guest-container > p {
+  text-align:left;
+  width: 50%;
+  margin-top: 10px;
+  margin-left:100px;
+}
