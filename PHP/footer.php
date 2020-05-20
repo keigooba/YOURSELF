@@ -1,5 +1,5 @@
 <footer id="footer">
-    Copyright <a href="index.html">YOURSELF</a>.All Rights Reserved.
+    Copyright <a href="../index.html">YOURSELF</a>.All Rights Reserved.
     <p>大庭慶吾のポートフォリオ</p>
 </footer>
 
