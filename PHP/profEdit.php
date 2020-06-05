@@ -27,7 +27,7 @@ if(!empty($_POST)){
 	debug('FILE情報：'.print_r($_FILES,true));
 
 	//ゲストユーザーかどうか確認
-	if($_SESSION['user_id'] === 1){
+	if($_SESSION['user_id'] == 1){
 		GuestUser();
 		return  header("Location:mypage.php");
 	}

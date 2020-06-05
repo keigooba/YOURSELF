@@ -19,7 +19,7 @@ if(!empty($_POST)){
     debug('POST送信があります ');
 
     //ゲストユーザーかどうか確認
-    if($_SESSION['user_id'] === 1){
+    if($_SESSION['user_id'] == 1){
         GuestUser();
         return  header("Location:mypage.php");
     }
