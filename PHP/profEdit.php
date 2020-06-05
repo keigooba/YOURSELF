@@ -249,7 +249,7 @@ require('head.php');
 							<p>任意</p>
 						</th>
 						<td>
-							<label class="<?php if(!empty($err_msg['zip'])) echo 'err'; ?>">
+							<label class="<?php if(!empty($err_msg['addr'])) echo 'err'; ?>">
 								<input type="text" name="addr" value="<?php echo getFormData('addr'); ?>"> <br>
 							</label>
 							<span>例）大阪府大阪市〜</span>
