@@ -170,7 +170,7 @@ function validMaxLen($str, $key, $max = 256){
 }
 //バリデーション関数（半角チェック）
 function validHalf($str, $key){
-  if(!preg_match("/^[a-zA-Z0-9]+$/", $key)){
+  if(!preg_match("/[a-zA-Z0-9]/", $key)){
     global $err_msg;
     $err_msg[$key] = MSG04;
   }
