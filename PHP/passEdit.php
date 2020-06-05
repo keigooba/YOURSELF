@@ -24,11 +24,11 @@ if(!empty($_POST)){
   debug('POST情報：'.print_r($_POST,true));
 
   //ゲストユーザーかどうか確認
-  if($_SESSION['user_id'] = 1){
+  if($_SESSION['user_id'] === 1){
     GuestUser();
     return  header("Location:mypage.php");
   }
-
+  debug('ゲストユーザーではありません。');
   // 変数にユーザー情報を代入
   $pass_old = $_POST['pass_old'];
   $pass_new = $_POST['pass_new'];
@@ -43,9 +43,9 @@ if(!empty($_POST)){
       debug('未入力チェックOK。');
       
       // 古いパスワードのチェック
-      // validPass($pass_old, 'pass_old');
+      validPass($pass_old, 'pass_old');
       // 新しいパスワードのチェック
-      // validPass($pass_new, 'pass_new');
+      validPass($pass_new, 'pass_new');
 
       // 古いパスワードとDBパスワードを照合
       if(!password_verify($pass_old, $userData['password'])){

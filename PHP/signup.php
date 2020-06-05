@@ -33,9 +33,9 @@ if(!empty($_POST)){
   if(empty($err_msg)){
     
     // 姓名チェック
-    validName($surname, 'surname');
+    validName($surname,'surname');
     // 名前チェック
-    validName($name, 'name');
+    validName($name,'name');
 
     // 姓名チェック（カナ文字）
     validkanaName($surkanaName,'surkanaName');
