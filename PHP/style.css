@@ -1,14 +1,14 @@
 
 @charset "UTF-8";
-  
+
 /* ********************************************
 // --- リセット ---
 // ※ブラウザのデフォルトCSSをリセット
 // ***************************************** */
-  
+
 *{
   margin: 0;
-  padding: 0;
+  /* padding: 0; */
 }
 html{
   font-size: 16px;
@@ -123,6 +123,10 @@ img{
   overflow:hidden;
   margin-bottom:100px;
 }
+.mainbar {
+  width:80%;
+  float:left;
+}
 .signup-wrapper{
   width: 540px;
   margin: 0 auto;
@@ -221,8 +225,7 @@ input[type="submit"]:hover{
   cursor: pointer;
   background: #333;
 }
-.company_checkbox{
-  margin:50px;
+.add_infomation {
 }
 .flg_text{
   color:#48b4e0;
@@ -362,9 +365,9 @@ input[type="checkbox"]{
   width:80%;
   float:left;
 }
-.profile-form table{
+.profile-form table ,.add_information{
   width:90%;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 .profile-form table th{
   width:20%;
@@ -381,9 +384,6 @@ input[type="number"]{
   padding: 10px;
   font-size:16px;
   box-sizing: border-box;
-}
-table td p,span {
-  padding:5px;
 }
 .area-msg{
   color: #ff0000;
@@ -405,8 +405,11 @@ label{
 label.err input, label.err select{
   background: #f7dcd9;
 }
-.btn-container{
-  margin-top: 50px;
+.add_information label{
+  margin: 10px 0;
+}
+.label-any{
+  margin: 0 10px;
 }
 /* 退会ページ */
 .withdraw-box{
@@ -427,6 +430,7 @@ label.err input, label.err select{
 
 /* レイアウト */
 #contents{
+  min-height: 800px;
   overflow:hidden;
   margin: 20px auto;
 }
@@ -497,9 +501,9 @@ label.err input, label.err select{
   height:250px;
   overflow: hidden;
   border-radius: 8px;
-  border-left: solid 1px #ddd; 
-  border-right: solid 1px #ddd; 
-  border-bottom: solid 5px #888; 
+  border-left: solid 1px #ddd;
+  border-right: solid 1px #ddd;
+  border-bottom: solid 5px #888;
 }
 .card-skin:hover{
   left:-1px;
@@ -687,23 +691,34 @@ label.err input, label.err select{
 }
 /* 検索エリア */
 .search-title {
-  overflow: hidden;
+  position: relative;
   margin-bottom: 20px;
-  padding: 5px 10px;
-  height: 40px;
+  padding: 0 10px;
+  height: 50px;
   background: #f6f5f4;
-  line-height: 40px;
-
+  line-height: 50px;
+  box-sizing: border-box;
 }
-
-.search-left {
-  float: left;
+.search-title input[type="submit"] {
+  padding: 5px 10px;
+  float: none;
 }
-
-.search-right {
-  float: right;
+.selectbox {
+  display: inline;
 }
-
+select{
+  width: 10%;
+  padding-bottom: 5px;
+  margin: 0 5px;
+}
+.select-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+.search-number{
+  position: absolute;
+  right: 1%;
+}
 .search-title .total-num {
   padding-right: 5px;
   font-weight: bold;
@@ -786,9 +801,23 @@ label.err input, label.err select{
   width:400px;
   margin: 0 auto;
   border:5px;
+  position: relative;
 }
 .user__imgframe img{
   border-radius:200px;
+}
+/* お気に入りアイコン */
+.icn-like{
+  position:absolute;
+  margin-left: 50px;
+  color: #ddd;
+  font-size: 40px;
+}
+.icn-like:hover{
+  cursor: pointer;
+}
+.icn-like.active{
+  color: #fe8a8b;
 }
 .user__textbox{
   width: 50%;
@@ -812,16 +841,16 @@ label.err input, label.err select{
 /* リスト */
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 
-.list-table{
-  width:80%;
-  float:left;
-}
 .list-title{
   border-left: 6px solid #b6a489;
   padding-left:10px;
   margin-bottom:15px;
 }
 
+.list-table {
+  margin-bottom: 80px;
+
+}
 /* ========================= */
   /* テーブル */
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
@@ -843,6 +872,9 @@ label.err input, label.err select{
   border:1px solid #000;
   box-sizing:border-box;
 
+}
+table tbody td {
+  padding: 0;
 }
 .list-table > .table > tbody td a {
   color:rgb(181,165,137);

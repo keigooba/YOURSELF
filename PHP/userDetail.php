@@ -4,7 +4,7 @@
 require('function.php');
 
 debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
-debug('「　ユーザー登録詳細ページ」　');
+debug('「　ユーザー詳細ページ」　');
 debug('「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「「');
 debugLogStart();
 
@@ -38,7 +38,7 @@ if(!empty($_POST)){
 
   //会社登録済みか確認
   validUserCompany($_SESSION['user_id']);
-  
+
   debug('取得したDBデータ：'.print_r(validUserCompany($_SESSION['user_id'])));
 
   if(empty($err_msg)){
@@ -60,14 +60,14 @@ if(!empty($_POST)){
       $_SESSION['msg_success'] = SUC04;
 
       debug('連絡掲示板へ遷移します。');
-      
+
       header("Location:msg.php?m_id=".$dbh->lastInsertID()); //連絡掲示板へ
     }
 
     } catch (Exception $e) {
       error_log('エラー発生：' .$e->getMessage());
       $err_msg['common'] = MSG07;
-    } 
+    }
   }
 }
 
@@ -88,7 +88,7 @@ require('head.php');
       <div class="title-block">
         <a href="index.php<?php echo appendGetParam(array('u_id')); ?>" class="cancel">キャンセル</a>
         <h1 class="title">ユーザー詳細ページ</h1>
-        <form action="" method="post">      
+        <form action="" method="post">
           <button type="submit" name="submit" class="contact">連絡掲示板へ</button>
         </form>
       </div>
@@ -99,6 +99,7 @@ require('head.php');
       </div>
       <div class="user__imgframe">
         <img src="<?php echo showImg(sanitize($viewData['pic'])); ?>" class="img">
+        <i class="fa fa-heart icn-like js-click-like <?php if(isLike($_SESSION['user_id'], $viewData['id'])){ echo 'active'; } ?>" aria-hidden="true" data-entryuser_id="<?php echo sanitize($viewData['id']); ?>" ></i>
       </div>
       <table class="user__textbox">
        <tbody>
@@ -141,7 +142,6 @@ require('head.php');
             echo sanitize($viewData['email']);
             ?>
             </td>
-            <td>
           </tr>
           <tr>
             <th>

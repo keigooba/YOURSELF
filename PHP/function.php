@@ -6,6 +6,7 @@
 ini_set('log_errors','on');
 //ログの出力ファイルを指定
 ini_set('error_log','php.log');
+
 //================================
 // デバッグ
 //================================
@@ -69,6 +70,7 @@ define('MSG16','現在のパスワードと同じです');
 define('MSG17','文字で入力してください');
 define('MSG18','※プロフィール編集で会社登録してください');
 define('MSG19','登録ありがとうございます!登録完了しました');
+define("MSG20",'正しくありません');
 define('SUC01','パスワードを変更しました');
 define('SUC02','プロフィールを変更しました');
 define('SUC03','メールを送信しました');
@@ -145,7 +147,6 @@ function validUserCompany($u_id){
     $err_msg['common'] = MSG07;
   }
 }
-
 //バリデーション関数（同値チェック）
 function validMatch($str1, $str2, $key){
   if($str1 !== $str2){
@@ -177,9 +178,7 @@ function validHalf($str, $key){
 //バリデーション関数(漢字チェック）
 function validCharacters($str,$key){
     if(!preg_match("/([\x{3005}\x{3007}\x{303b}\x{3400}-\x{9FFF}\x{F900}-\x{FAFF}\x{20000}-\x{2FFFF}])(.*|)/u",$str)){
-
-        $err_msg[$key] = MSG10;
-
+      $err_msg[$key] = MSG10;
     }
 }
 //バリデーション関数（名前最大文字数チェック）
@@ -229,14 +228,14 @@ function validName($str, $key){
   //追加機能 漢字チェック
   validCharacters($str, $key);
   //最大文字数チェック（名前）
-  validNameMixLen($str, $key); 
+  validNameMixLen($str, $key);
 }
 // 姓名・名前チェック(カナ文字)
 function validkanaName($str, $key){
   //カナ文字チェック
   validkanaCharacters($str,$key);
   //最大文字数チェック（名前）
-  validNameMixLen($str, $key);  
+  validNameMixLen($str, $key);
 }
 // メールアドレスチェック
 function validEmail($str,$key){
@@ -254,6 +253,13 @@ function validPass($str, $key){
   //パスワード最小文字数チェック
   validMinLen($str, $key);
 }
+//selectboxチェック
+function validSelect($str, $key) {
+  if(!preg_match("/^[0-9]+$/", $str)){
+    global $err_msg;
+    $err_msg[$key] = MSG15;
+  }
+}
 // エラーメッセージ表示
 function getErrMsg($key){
   global $err_msg;
@@ -261,7 +267,31 @@ function getErrMsg($key){
     return $err_msg[$key];
   }
 }
+// ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+// ログイン認証
+// ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+function isLogin(){
+  //ログインしている場合
+  if(!empty($_SESSION['login_date'])){
+    debug('ログイン済みユーザーです。');
 
+    //現在日時が最終ログイン日時＋有効期限を超えていた場合
+    if($_SESSION['login_date'] + $_SESSION['login_limit'] < time()){
+      debug('ログイン有効期限オーバーです。');
+
+      //セッションを削除(ログアウトする)
+      session_destroy();
+      return false;
+    }else{
+      debug('ログイン有効期限以内です。');
+      return true;
+    }
+
+  }else{
+    debug('未ログインユーザーです。');
+    return false;
+  }
+}
 //================================
 // データベース
 //================================
@@ -315,7 +345,7 @@ function getUser($u_id){
     error_log('エラー発生:' . $e->getMessage());
   }
 }
-function getUserList($currentMinNum = 1, $span = 20){
+function getUserList($currentMinNum = 1, $category, $age_id, $sort, $span = 20){
   debug('ユーザー情報を取得します。');
   //例外処理
   try{
@@ -323,6 +353,39 @@ function getUserList($currentMinNum = 1, $span = 20){
     $dbh = dbConnect();
     // 件数用のSQL文作成
     $sql = 'SELECT id FROM users WHERE delete_flg = 0';
+    if(!empty($category)) $sql .= ' AND category_id = '.$category;
+    if(!empty($age_id)){
+      switch($age_id){
+        case 10:
+          $sql .= ' AND age < 20 ';
+          break;
+        case 20:
+          $sql .= ' AND age >= 20  AND age < 30';
+          break;
+        case 30:
+          $sql .= ' AND age >= 30 AND age < 40';
+          break;
+        case 40:
+          $sql .= ' AND age >= 40 AND age < 50';
+          break;
+        case 50:
+          $sql .= ' AND age >= 50 AND age < 60';
+          break;
+        case 60:
+          $sql .= ' AND age >= 60';
+          break;
+      }
+    }
+    if(!empty($sort)){
+      switch($sort){
+        case 1:
+          $sql .= ' ORDER BY age ASC';
+          break;
+        case 2:
+          $sql .= ' ORDER BY age DESC';
+          break;
+      }
+    }
     $data = array();
     //クエリ実行
     $stmt = queryPost($dbh,$sql,$data);
@@ -335,6 +398,39 @@ function getUserList($currentMinNum = 1, $span = 20){
     }
     //ページング用のSQL文作成
     $sql = 'SELECT * FROM users WHERE delete_flg = 0';
+    if(!empty($category)) $sql .= ' AND category_id = '.$category;
+    if(!empty($age_id)){
+      switch($age_id){
+        case 10:
+          $sql .= ' AND age < 20 ';
+          break;
+        case 20:
+          $sql .= ' AND age >= 20 AND age < 30';
+          break;
+        case 30:
+          $sql .= ' AND age >= 30 AND age < 40';
+          break;
+        case 40:
+          $sql .= ' AND age >= 40 AND age < 50';
+          break;
+        case 50:
+          $sql .= ' AND age >= 50 AND age < 60';
+          break;
+        case 60:
+          $sql .= ' AND age >= 60';
+          break;
+      }
+    }
+    if(!empty($sort)){
+      switch($sort){
+        case 1:
+          $sql .= ' ORDER BY age ASC';
+          break;
+        case 2:
+          $sql .= ' ORDER BY age DESC';
+          break;
+      }
+    }
     $sql .= ' LIMIT '.$span.' OFFSET '.$currentMinNum;
     $data = array();
     debug('SQL:'.$sql);
@@ -410,6 +506,81 @@ function getMyMsgsAndBord($u_id){
     error_log('エラー発生：'.$e->getMessage());
   }
 }
+function getCategory(){
+  debug('カテゴリー情報を取得します。');
+  // 例外処理
+  try {
+    // DBへ接続
+    $dbh = dbConnect();
+    //SQL文作成
+    $sql = 'SELECT * FROM category';
+    $data = array();
+    // クエリ実行
+    $stmt = queryPost($dbh, $sql, $data);
+
+    if($stmt){
+      // クエリ結果の全データを返却
+      return $stmt->fetchAll();
+    }else{
+      return false;
+    }
+
+  } catch (Exception $e){
+    error_log('エラー発生：' . $e->getMessage());
+  }
+}
+function isLike($u_id, $e_id){
+  debug('お気に入り情報があるか確認します。');
+  debug('ユーザーID：'.$u_id);
+  debug('登録ユーザーのID：'.$e_id);
+  //例外処理
+  try {
+    // DBへ接続
+    $dbh = dbConnect();
+    // SQL文作成
+    $sql = 'SELECT * FROM `like` WHERE entryuser_id = :e_id AND user_id = :u_id';
+    $data = array(':u_id' => $u_id, ':e_id' => $e_id);
+    // クエリ実行
+    $stmt = queryPost($dbh, $sql, $data);
+
+    if($stmt->rowCount()){
+      debug('お気に入りです');
+      return true;
+    }else{
+      debug('特に気に入ってません');
+      return false;
+    }
+
+  } catch (Exception $e) {
+    error_log('エラー発生:' . $e->getMessage());
+  }
+}
+
+function getMyLike($u_id){
+  debug('自分のお気に入り情報を取得します。');
+  debug('ユーザーID：'.$u_id);
+  //例外処理
+  try {
+    // DBへ接続
+    $dbh = dbConnect();
+    // SQL文作成
+    $sql = 'SELECT * FROM `like` AS l LEFT JOIN users AS u ON l.entryuser_id = u.id WHERE l.user_id = :u_id';
+    $data = array(':u_id' => $u_id);
+    // クエリ実行
+    $stmt = queryPost($dbh, $sql, $data);
+
+    if($stmt){
+      // クエリ結果の全データを返却
+      return $stmt->fetchAll();
+    }else{
+      return false;
+    }
+
+  } catch (Exception $e) {
+    error_log('エラー発生:' . $e->getMessage());
+  }
+}
+
 //===============================
 // メール送信
 //===============================
@@ -429,6 +600,7 @@ function sendMail($from, $to, $subject, $comment){
     }
   }
 }
+
 //==================================
 //その他
 //==================================
@@ -484,7 +656,7 @@ function makeRandkey($length = 8){
 function uploadImg($file, $key){
   debug('画像アップロード処理開始');
   debug('FILE情報：'.print_r($file,true));
-  
+
   if (isset($file['error']) && is_int($file['error'])) {
     try {
       // バリデーション
@@ -501,7 +673,7 @@ function uploadImg($file, $key){
           default: // その他の場合
               throw new RuntimeException('その他のエラーが発生しました');
       }
-      
+
       // $file['mime']の値はブラウザ側で偽装可能なので、MIMEタイプを自前でチェックする
       // exif_imagetype関数は「IMAGETYPE_GIF」「IMAGETYPE_JPEG」などの定数を返す
       $type = @exif_imagetype($file['tmp_name']);
@@ -519,7 +691,7 @@ function uploadImg($file, $key){
       }
       // 保存したファイルパスのパーミッション（権限）を変更する
       chmod($path, 0644);
-      
+
       debug('ファイルは正常にアップロードされました');
       debug('ファイルパス：'.$path);
       return $path;
@@ -540,7 +712,7 @@ function uploadImg($file, $key){
 // $link : 検索用GETパラメータリンク
 // $pageColNum : ページネーション表示数
 function pagination( $currentPageNum, $totalPageNum, $link = '', $pageColNum = 5){
-  // 現在のページが、総ページ数と同じ　かつ　総ページ数が表示項目数以上なら、左にリンク４個出す
+  // 現在のページが、総ページ数と同じかつ総ページ数が表示項目数以上なら、左にリンク４個出す
   if( $currentPageNum == $totalPageNum && $totalPageNum > $pageColNum){
     $minPageNum = $currentPageNum - 4;
     $maxPageNum = $currentPageNum;
@@ -565,7 +737,7 @@ function pagination( $currentPageNum, $totalPageNum, $link = '', $pageColNum = 5
     $minPageNum = $currentPageNum - 2;
     $maxPageNum = $currentPageNum + 2;
   }
-  
+
   echo '<div class="pagination">';
     echo '<ul class="pagination-list">';
       if($currentPageNum != 1){

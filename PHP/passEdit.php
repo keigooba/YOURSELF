@@ -26,7 +26,7 @@ if(!empty($_POST)){
   //ゲストユーザーかどうか確認
   if($_SESSION['user_id'] == 1){
     GuestUser();
-    return  header("Location:mypage.php");
+    return header("Location:mypage.php");
   }
   debug('ゲストユーザーではありません。');
   // 変数にユーザー情報を代入
@@ -41,10 +41,10 @@ if(!empty($_POST)){
 
   if(empty($err_msg)){
       debug('未入力チェックOK。');
-      
-      // 古いパスワードのチェック
+
+      // 古いパスワードの形式チェック
       validPass($pass_old, 'pass_old');
-      // 新しいパスワードのチェック
+      // 新しいパスワードの形式チェック
       validPass($pass_new, 'pass_new');
 
       // 古いパスワードとDBパスワードを照合
@@ -103,7 +103,7 @@ EOT;
           } catch (Exception $e) {
               error_log('エラー発生:' . $e->getMessage());
               $err_msg['common'] = MSG07;
-              
+
           }
       }
   }

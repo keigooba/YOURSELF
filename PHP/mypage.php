@@ -16,7 +16,13 @@ require('auth.php');
 // ==================================
 $u_id = $_SESSION['user_id'];
 // DBから連絡掲示板データを取得
-$bordData = getMyMsgsAndBord($u_id);
+$bordData = getMyMsgsAndBord($u_id);
+// DBからお気に入りデータを取得
+$likeData = getMyLike($u_id);
+
+//DBからきちんとデータがすべて取れているかのチェックは行わず、取れなければ何も表示しないこととする
+// debug('取得した連絡掲示板データ：'.print_r($bordData,true));
+// debug('取得したお気に入りデータ：'.print_r($likeData,true));
 
 debug('画面表示処理終了 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
 ?>
@@ -37,8 +43,8 @@ require('head.php');
   <div id="contents" class="site-width">
 
     <h1 class="page-title">マイページ</h1>
-    
-    <section id="main">
+
+    <section id="main" class="mainbar">
       <section class="list list-table">
         <h2 class="list-title">
           メッセージリスト
@@ -63,7 +69,7 @@ require('head.php');
                 </tr>
             <?php
                 }else{
-            ?> 
+            ?>
                 <tr>
                     <td>--</td>
                     <td><a href="msg.php?m_id=<?php echo sanitize($val['id']); ?>">まだメッセージはありません</a></td>
@@ -75,12 +81,37 @@ require('head.php');
             ?>
           </tbody>
         </table>
-      </section>   
-      <?php
-      require('sidebar.php');
-      ?>
+      </section>
+      <section class="list list-table">
+        <h2 class="list-title">
+          お気に入り一覧
+        </h2>
+        <?php
+        if(!empty($likeData)):
+          foreach($likeData as $key => $val):
+          ?>
+        <div class="card card-skin">
+          <a href="userDetail.php<?php echo (!empty(appendGetParam())) ? appendGetParam().'&u_id='.$val['id'] : '?u_id='.$val['id']; ?>" class="card-panel">
+            <div class="card__imgframe">
+              <img src="<?php echo showImg(sanitize($val['pic'])); ?>" alt="<?php echo sanitize($val['name']); ?>" class="img">
+            </div>
+            <div class="card__textbox">
+              <div class="card__text">
+                <span class="age"><?php echo sanitize($val['surname']); ?></span>
+                <span class="name"><?php echo sanitize($val['name']); ?></span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <?php
+            endforeach;
+          endif;
+        ?>
+      </section>
     </section>
-
+    <?php
+      require('sidebar.php');
+    ?>
   </div>
 <?php
 require('footer.php');
