@@ -153,7 +153,7 @@ require('head.php');
               <?php echo sanitize(date('H:i', strtotime($val['send_time']))); ?></p>
             </div>
           </div>
-        <?php 
+        <?php
               }else{
         ?>
           <div class="msg-cnt msg-right">
@@ -195,7 +195,7 @@ require('head.php');
   <script>
     $(function(){
       //scrollHeightは要素のスクロールビューの高さを取得するもの
-      $('#js-scroll-bottom').animate({scrollTop: $('#js-scroll-bottom')[0].scrollHeight}, 'fast');      
+      $('#js-scroll-bottom').animate({scrollTop: $('#js-scroll-bottom')[0].scrollHeight}, 'fast');
     });
     //メッセージ表示
     var $jsShowMsg = $('#js-slideDown-msg'); //jqueryでDOMを取得する（頭に＄をつける）

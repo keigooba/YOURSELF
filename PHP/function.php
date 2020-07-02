@@ -7,6 +7,8 @@ ini_set('log_errors','on');
 //ログの出力ファイルを指定
 ini_set('error_log','php.log');
 
+// 時間設定
+date_default_timezone_set('Asia/Tokyo');
 //================================
 // デバッグ
 //================================
