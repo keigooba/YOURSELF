@@ -679,8 +679,11 @@ function uploadImg($file, $key){
       // $file['mime']の値はブラウザ側で偽装可能なので、MIMEタイプを自前でチェックする
       // exif_imagetype関数は「IMAGETYPE_GIF」「IMAGETYPE_JPEG」などの定数を返す
       $type = @exif_imagetype($file['tmp_name']);
+      var_dump('kokomade1');
       if (!in_array($type, [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG], true)) { // 第三引数にはtrueを設定すると厳密にチェックしてくれるので必ずつける
+        var_dump('kokomade2');
           throw new RuntimeException('画像形式が未対応です');
+        var_dump('kokomade3');
       }
       var_dump('kokoha3');
       // ファイルデータからSHA-1ハッシュを取ってファイル名を決定し、ファイルを保存する
