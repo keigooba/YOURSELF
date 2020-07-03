@@ -658,7 +658,7 @@ function makeRandkey($length = 8){
 function uploadImg($file, $key){
   debug('画像アップロード処理開始');
   debug('FILE情報：'.print_r($file,true));
-
+  var_dump('kokoha1');
   if (isset($file['error']) && is_int($file['error'])) {
     try {
       // バリデーション
@@ -675,14 +675,14 @@ function uploadImg($file, $key){
           default: // その他の場合
               throw new RuntimeException('その他のエラーが発生しました');
       }
-
+      var_dump('kokoha2');
       // $file['mime']の値はブラウザ側で偽装可能なので、MIMEタイプを自前でチェックする
       // exif_imagetype関数は「IMAGETYPE_GIF」「IMAGETYPE_JPEG」などの定数を返す
       $type = @exif_imagetype($file['tmp_name']);
       if (!in_array($type, [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG], true)) { // 第三引数にはtrueを設定すると厳密にチェックしてくれるので必ずつける
           throw new RuntimeException('画像形式が未対応です');
       }
-
+      var_dump('kokoha3');
       // ファイルデータからSHA-1ハッシュを取ってファイル名を決定し、ファイルを保存する
       // ハッシュ化しておかないとアップロードされたファイル名そのままで保存してしまうと同じファイル名がアップロードされる可能性があり、
       // DBにパスを保存した場合、どっちの画像のパスなのか判断つかなくなってしまう
@@ -691,19 +691,19 @@ function uploadImg($file, $key){
       if (!move_uploaded_file($file['tmp_name'], $path)) { //ファイルを移動する
           throw new RuntimeException('ファイル保存時にエラーが発生しました');
       }
+      var_dump('kokoha4');
       // 保存したファイルパスのパーミッション（権限）を変更する
       chmod($path, 0644);
-
+      var_dump('kokoha5');
       debug('ファイルは正常にアップロードされました');
       debug('ファイルパス：'.$path);
       return $path;
 
     } catch (RuntimeException $e) {
-
+      var_dump($e->getMessage());
       debug($e->getMessage());
       global $err_msg;
       $err_msg[$key] = $e->getMessage();
-
     }
   }
 }
