@@ -26,7 +26,7 @@ debug('カテゴリーデータ：' .print_r($dbcategoryData,true));
 if(!empty($_POST)){
 	debug('POST送信があります。');
 	debug('POST情報：'.print_r($_POST,true));
-	debug('FILE情報：'.print_r($_FILES,true));
+	// debug('FILE情報：'.print_r($_FILES,true));
 	//ゲストユーザーかどうか確認
 	if($_SESSION['user_id'] == 1){
 		GuestUser();
@@ -34,18 +34,29 @@ if(!empty($_POST)){
 	}
 	debug('ゲストユーザーではありません。');
 	//変数にユーザー情報を代入
-	$surname=$_POST['surname'];
-	$name=$_POST['name'];
-	$surkanaName=$_POST['surkanaName'];
-	$kanaName=$_POST['kanaName'];
-	$email=$_POST['email'];
-	$tel=$_POST['tel'];
-	$zip=$_POST['zip'];
-	$addr=$_POST['addr'];
-	$age=(!empty($_POST['age'])) ? $_POST['age'] : 0; //後続のバリデーションに引っかかるため、空で送信されてきたら0を入れる
-	$pic = (!empty($_FILES['pic']['name'])) ? uploadImg($_FILES['pic'], 'pic') : '';
+  $surname=$_POST['surname'];
+  var_dump('koko1');
+  $name=$_POST['name'];
+  var_dump('koko2');
+  $surkanaName=$_POST['surkanaName'];
+  var_dump('koko3');
+  $kanaName=$_POST['kanaName'];
+  var_dump('koko4');
+  $email=$_POST['email'];
+  var_dump('koko5');
+  $tel=$_POST['tel'];
+  var_dump('koko6');
+  $zip=$_POST['zip'];
+  var_dump('koko7');
+  $addr=$_POST['addr'];
+  var_dump('koko8');
+  $age=(!empty($_POST['age'])) ? $_POST['age'] : 0; //後続のバリデーションに引っかかるため、空で送信されてきたら0を入れる
+  var_dump('koko9');
+  $pic = (!empty($_FILES['pic']['name'])) ? uploadImg($_FILES['pic'], 'pic') : '';
+  var_dump('koko10');
 		// 画像をPOSTしてない（登録していない）が既にDBに登録されている場合、DBのパスを入れる（POSTには反映されないので）
   $pic = ( empty($pic) && !empty($dbFormData['pic'])) ? $dbFormData['pic'] : $pic;
+  var_dump('koko11');
   $category = $_POST['category_id'];
 	$company_flg = (!empty($_POST['company_flg'])) ? 1 : 0 ;
 
