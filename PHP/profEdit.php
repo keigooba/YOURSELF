@@ -137,7 +137,8 @@ if(!empty($_POST)){
 				header("Location:mypage.php"); //マイページへ
 			}
 		} catch (Exception $e) {
-			error_log('エラー発生：' . $e->getMessage());
+			var_dump($e->getMessage());
+			// error_log('エラー発生：' . $e->getMessage());
 			$err_msg['common'] = MSG07;
 		}
 	}
