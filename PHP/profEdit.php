@@ -26,7 +26,6 @@ debug('カテゴリーデータ：' .print_r($dbcategoryData,true));
 if(!empty($_POST)){
 	debug('POST送信があります。');
 	debug('POST情報：'.print_r($_POST,true));
-	// debug('FILE情報：'.print_r($_FILES,true));
 	//ゲストユーザーかどうか確認
 	if($_SESSION['user_id'] == 1){
 		GuestUser();
@@ -58,7 +57,9 @@ if(!empty($_POST)){
   $pic = ( empty($pic) && !empty($dbFormData['pic'])) ? $dbFormData['pic'] : $pic;
   var_dump('koko11');
   $category = $_POST['category_id'];
-	$company_flg = (!empty($_POST['company_flg'])) ? 1 : 0 ;
+  var_dump('koko12');
+  $company_flg = (!empty($_POST['company_flg'])) ? 1 : 0 ;
+  var_dump('koko13');
 
 	//DBの情報と入力情報が異なる場合にバリデーションを行う
 	if($dbFormData['surname'] !==$surname){
@@ -116,7 +117,7 @@ if(!empty($_POST)){
   }
 	if(empty($err_msg)){
 		debug('バリデーションOKです。');
-
+    var_dump('koko14');
 		//例外処理
 		try{
 			//DBへ接続
@@ -125,12 +126,14 @@ if(!empty($_POST)){
 			$sql = 'UPDATE users SET surname= :surname, name= :name, surkanaName=:surkanaName, kanaName=:kanaName, email=:email, tel=:tel, zip=:zip, addr=:addr,age=:age, pic=:pic, category_id =:category, company_flg=:company_flg WHERE id = :u_id';
 			$data = array(':surname' => $surname, ':name' => $name, ':surkanaName' => $surkanaName,':kanaName' => $kanaName, ':email' => $email, ':tel' => $tel, ':zip' => $zip, ':addr' => $addr,':age' => $age, ':pic' => $pic,':category' => $category, ':company_flg' => $company_flg, ':u_id' =>$dbFormData['id']);
 			//クエリ実行
-			$stmt = queryPost($dbh, $sql, $data);
+      $stmt = queryPost($dbh, $sql, $data);
+      var_dump('koko14');
 
 			//クエリ成功の場合 $_SESSIONにプロフィールを変更したことを記録する
 			if($stmt){
 				$_SESSION['msg_success'] = SUC02;
-				debug('マイページへ遷移します。');
+        debug('マイページへ遷移します。');
+        var_dump('koko15');
 				header("Location:mypage.php"); //マイページへ
 			}
 		} catch (Exception $e) {
