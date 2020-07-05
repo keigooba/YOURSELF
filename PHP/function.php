@@ -3,7 +3,7 @@
 // ログ
 //================================
 // composerのライブラリの認識
-// require_once _DIR_ . '/vendor/autoload.php';
+require_once _DIR_ . '/../vendor/autoload.php';
 //ログを取るか
 ini_set('log_errors','on');
 //ログの出力ファイルを指定
