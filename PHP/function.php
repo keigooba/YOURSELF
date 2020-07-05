@@ -3,8 +3,8 @@
 // ログ
 //================================
 // composerのライブラリの認識
-require __DIR__ . '/../vendor/autoload.php'; // path to vendor/
-// require_once__DIR_ . '../vendor/autoload.php';
+// require __DIR__ . '/../vendor/autoload.php'; // path to vendor/
+require_once _DIR_ . '/vendor/autoload.php';
 //ログを取るか
 ini_set('log_errors','on');
 //ログの出力ファイルを指定
@@ -596,7 +596,7 @@ function sendMail($from, $to, $subject, $comment){
     // 文字化けしないように設定（お決まりパターン）
     mb_language("Japanese"); //現在使っている言語を設定する
     mb_internal_encoding("UTF-8"); //内部の日本語をどうエンコーディング（機械が分かる言葉へ変換）するかを設定
-    $sendgrid = new \SendGrid(getenv('SENDGRID_USERNAME'), getenv('SENDGRID_PASSWORD'));
+    $sendgrid = new \SendGrid(getenv('app170880272@heroku.com'), getenv('o9sdvb974837'));
     $email = new \SendGrid\Email();
     $email->addTo($to)->
         setFrom($from)->
