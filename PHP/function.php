@@ -2,6 +2,8 @@
 //================================
 // ログ
 //================================
+// composerのライブラリの認識
+require_once _DIR_ . '/vendor/autoload.php';
 //ログを取るか
 ini_set('log_errors','on');
 //ログの出力ファイルを指定
@@ -10,6 +12,7 @@ ini_set('error_log','php.log');
 ini_set( 'display_errors', 1 );
 // 時間設定
 date_default_timezone_set('Asia/Tokyo');
+
 //================================
 // デバッグ
 //================================
@@ -592,6 +595,14 @@ function sendMail($from, $to, $subject, $comment){
     // 文字化けしないように設定（お決まりパターン）
     mb_language("Japanese"); //現在使っている言語を設定する
     mb_internal_encoding("UTF-8"); //内部の日本語をどうエンコーディング（機械が分かる言葉へ変換）するかを設定
+    $sendgrid = new \SendGrid(getenv('SENDGRID_USERNAME'), getenv('SENDGRID_PASSWORD'));
+    $email = new \SendGrid\Email();
+    $email->addTo($to)->
+        setFrom($from)->
+        setSubject($subject)->
+        setText($comment);
+
+    $sendgrid->send($email);
 
     // メールを送信（送信結果はtrueかfalseで返ってくる）
     $result = mb_send_mail($to,$subject,$comment,"From:".$from);
@@ -679,7 +690,7 @@ function uploadImg($file, $key){
       var_dump('kokoha2');
       // $file['mime']の値はブラウザ側で偽装可能なので、MIMEタイプを自前でチェックする
       // exif_imagetype関数は「IMAGETYPE_GIF」「IMAGETYPE_JPEG」などの定数を返す
-      $type = @exif_imagetype($file['tmp_name']);
+      $type = exif_imagetype($file['tmp_name']);
       var_dump('kokomade1');
       if (!in_array($type, [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG], true)) { // 第三引数にはtrueを設定すると厳密にチェックしてくれるので必ずつける
         var_dump('kokomade2');
