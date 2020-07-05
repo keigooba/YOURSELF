@@ -596,14 +596,14 @@ function sendMail($from, $to, $subject, $comment){
     // 文字化けしないように設定（お決まりパターン）
     mb_language("Japanese"); //現在使っている言語を設定する
     mb_internal_encoding("UTF-8"); //内部の日本語をどうエンコーディング（機械が分かる言葉へ変換）するかを設定
-    // $sendgrid = new \SendGrid(getenv('app170880272@heroku.com'), getenv('o9sdvb974837'));
-    // $email = new \SendGrid\Email();
-    // $email->addTo($to)->
-    //     setFrom($from)->
-    //     setSubject($subject)->
-    //     setText($comment);
+    $sendgrid = new \SendGrid(getenv('app170880272@heroku.com'), getenv('o9sdvb974837'));
+    $email = new \SendGrid\Email();
+    $email->addTo($to)->
+        setFrom($from)->
+        setSubject($subject)->
+        setText($comment);
 
-    // $sendgrid->send($email);
+    $sendgrid->send($email);
 
     // メールを送信（送信結果はtrueかfalseで返ってくる）
     $result = mb_send_mail($to,$subject,$comment,"From:".$from);
