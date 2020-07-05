@@ -4,7 +4,7 @@
 //================================
 // composerのライブラリの認識
 // require __DIR__ . '/../vendor/autoload.php'; // path to vendor/
-require_once _DIR_ . '../vendor/autoload.php';
+// require_once _DIR_ . '../vendor/autoload.php';
 //ログを取るか
 ini_set('log_errors','on');
 //ログの出力ファイルを指定
