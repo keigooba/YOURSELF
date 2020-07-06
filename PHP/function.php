@@ -609,7 +609,8 @@ function sendMail($from, $to, $subject, $comment){
     // メールを送信（送信結果はtrueかfalseで返ってくる）
     $result = mb_send_mail($to,$subject,$comment,"From:".$from);
     // 送信結果を判定
-    if(!$result) {
+    if($result) {
+      exit;
       debug('メールを送信しました。');
     }else {
       debug('【エラー発生】メールの送信に失敗しました。');
