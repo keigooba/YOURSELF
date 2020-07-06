@@ -46,7 +46,7 @@ if(!empty($_POST)){
             if(time() > $_SESSION['auth_key_limit']){
                 $err_msg['common'] = MSG16;
             }
-            
+
             if(empty($err_msg)){
                 debug('認証OK。');
 
@@ -61,7 +61,7 @@ if(!empty($_POST)){
                     $data = array(':email' =>$_SESSION['auth_email'],':pass' =>password_hash($pass,PASSWORD_DEFAULT));
                     // クエリ実行
                     $stmt = queryPost($dbh, $sql, $data);
-                    
+
                     // クエリ成功の場合
                     if($stmt){
                         debug('クエリ成功。');
@@ -147,8 +147,8 @@ require('head.php');
                     </div>
                     <div class="btn-container">
                         <input type="submit" class="btn btn-mid" value="再発行">
-                     </div>     
-                     <a href="login.php">&lt; パスワード再発行メールを再度送信する</a>                    
+                     </div>
+                     <a href="login.php">&lt; パスワード再発行メールを再度送信する</a>
                 </form>
             </div>
         </section>
@@ -161,6 +161,3 @@ require('head.php');
     ?>
 </body>
 </html>
-
-
-

@@ -594,8 +594,8 @@ function getMyLike($u_id){
 function sendMail($from, $to, $subject, $comment){
   if(!empty($to) && !empty($subject) && !empty($comment)){
     // 文字化けしないように設定（お決まりパターン）
-    mb_language("Japanese"); //現在使っている言語を設定する
-    mb_internal_encoding("UTF-8"); //内部の日本語をどうエンコーディング（機械が分かる言葉へ変換）するかを設定
+    // mb_language("Japanese"); //現在使っている言語を設定する
+    // mb_internal_encoding("UTF-8"); //内部の日本語をどうエンコーディング（機械が分かる言葉へ変換）するかを設定
     $sendgrid = new \SendGrid(getenv('SENDGRID_USERNAME'), getenv('SENDGRID_PASSWORD'));
     $email = new \SendGrid\Email();
     $email->addTo($to)->
@@ -606,13 +606,13 @@ function sendMail($from, $to, $subject, $comment){
     $sendgrid->send($email);
 
     // メールを送信（送信結果はtrueかfalseで返ってくる）
-    $result = mb_send_mail($to,$subject,$comment,"From:".$from);
+    // $result = mb_send_mail($to,$subject,$comment,"From:".$from);
     // 送信結果を判定
-    if($result) {
-      debug('メールを送信しました。');
-    }else {
-      debug('【エラー発生】メールの送信に失敗しました。');
-    }
+    // if($result) {
+    //   debug('メールを送信しました。');
+    // }else {
+    //   debug('【エラー発生】メールの送信に失敗しました。');
+    // }
   }
 }
 
