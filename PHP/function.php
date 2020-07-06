@@ -596,8 +596,8 @@ function sendMail($from, $to, $subject, $comment){
     // 文字化けしないように設定（お決まりパターン）
     mb_language("Japanese"); //現在使っている言語を設定する
     mb_internal_encoding("UTF-8"); //内部の日本語をどうエンコーディング（機械が分かる言葉へ変換）するかを設定
-    $sendgrid = new \SendGrid(getenv('SENDGRID_USERNAME'), getenv('SENDGRID_PASSWORD'));
-    $email = new \SendGrid\Email();
+    $sendgrid = new SendGrid(getenv('SENDGRID_USERNAME'), getenv('SENDGRID_PASSWORD'));
+    $email = new SendGrid\Email();
     $email->addTo($to)->
         setFrom($from)->
         setSubject($subject)->
