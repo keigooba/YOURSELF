@@ -3,8 +3,8 @@
 // ログ
 //================================
 // composerのライブラリの認識
-// require __DIR__ . '/../vendor/autoload.php'; // path to vendor/
-require_once __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php'; // path to vendor/
+// require_once __DIR__ . '/../vendor/autoload.php';
 //ログを取るか
 ini_set('log_errors','on');
 //ログの出力ファイルを指定
@@ -597,7 +597,6 @@ function sendMail($from, $to, $subject, $comment){
     mb_language("Japanese"); //現在使っている言語を設定する
     mb_internal_encoding("UTF-8"); //内部の日本語をどうエンコーディング（機械が分かる言葉へ変換）するかを設定
     $sendgrid = new \SendGrid(getenv('SENDGRID_USERNAME'), getenv('SENDGRID_PASSWORD'));
-    var_dump(getenv('SEMDGRID_USERNAME'));
     $email = new \SendGrid\Email();
     $email->addTo($to)->
         setFrom($from)->
@@ -610,7 +609,6 @@ function sendMail($from, $to, $subject, $comment){
     $result = mb_send_mail($to,$subject,$comment,"From:".$from);
     // 送信結果を判定
     if($result) {
-      exit;
       debug('メールを送信しました。');
     }else {
       debug('【エラー発生】メールの送信に失敗しました。');
