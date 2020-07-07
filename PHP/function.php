@@ -606,13 +606,13 @@ function sendMail($from, $to, $subject, $comment){
     $sendgrid->send($email);
 
     // メールを送信（送信結果はtrueかfalseで返ってくる）
-    // $result = mb_send_mail($to,$subject,$comment,"From:".$from);
+    $result = mb_send_mail($to,$subject,$comment,"From:".$from);
     // 送信結果を判定
-    // if($result) {
-    //   debug('メールを送信しました。');
-    // }else {
-    //   debug('【エラー発生】メールの送信に失敗しました。');
-    // }
+    if($result) {
+      debug('メールを送信しました。');
+    }else {
+      debug('【エラー発生】メールの送信に失敗しました。');
+    }
   }
 }
 
