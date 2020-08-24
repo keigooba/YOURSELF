@@ -92,8 +92,9 @@ require('head.php');
           <button type="submit" name="submit" class="contact">連絡掲示板へ</button>
         </form>
       </div>
-      <div class="user__imgframe" style="padding-bottom:10px">
+      <div class="user__imgframe">
         <p class="note">※詳細情報は登録者にのみ公開されます</p>
+        <img src="<?php echo showImg(sanitize($viewData['pic'])); ?>" class="img" style="margin:10px">
       </div>
       <table class="user__textbox">
        <tbody>
