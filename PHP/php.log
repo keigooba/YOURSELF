@@ -2725,35 +2725,3 @@
 [12-May-2020 01:38:04 Asia/Tokyo] デバッグ：クエリ成功。
 [12-May-2020 01:38:04 Asia/Tokyo] デバッグ：画面表示処理終了
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-[24-Aug-2020 19:43:29 Asia/Tokyo] PHP Notice:  Undefined index: CLEARDB_DATABASE_URL in /Applications/MAMP/htdocs/yourself/PHP/function.php on line 307
-[24-Aug-2020 19:43:29 Asia/Tokyo] PHP Notice:  Undefined index: host in /Applications/MAMP/htdocs/yourself/PHP/function.php on line 309
-[24-Aug-2020 19:43:29 Asia/Tokyo] PHP Notice:  Undefined index: user in /Applications/MAMP/htdocs/yourself/PHP/function.php on line 310
-[24-Aug-2020 19:43:29 Asia/Tokyo] PHP Notice:  Undefined index: pass in /Applications/MAMP/htdocs/yourself/PHP/function.php on line 311
-[24-Aug-2020 19:43:29 Asia/Tokyo] エラー発生：SQLSTATE[HY000] [2002] No such file or directory
-[24-Aug-2020 19:43:29 Asia/Tokyo] PHP Notice:  Undefined index: CLEARDB_DATABASE_URL in /Applications/MAMP/htdocs/yourself/PHP/function.php on line 307
-[24-Aug-2020 19:43:29 Asia/Tokyo] PHP Notice:  Undefined index: host in /Applications/MAMP/htdocs/yourself/PHP/function.php on line 309
-[24-Aug-2020 19:43:29 Asia/Tokyo] PHP Notice:  Undefined index: user in /Applications/MAMP/htdocs/yourself/PHP/function.php on line 310
-[24-Aug-2020 19:43:29 Asia/Tokyo] PHP Notice:  Undefined index: pass in /Applications/MAMP/htdocs/yourself/PHP/function.php on line 311
-[24-Aug-2020 19:43:29 Asia/Tokyo] エラー発生：SQLSTATE[HY000] [2002] No such file or directory
-[24-Aug-2020 19:43:29 Asia/Tokyo] PHP Notice:  Trying to access array offset on value of type null in /Applications/MAMP/htdocs/yourself/PHP/index.php on line 59
-[24-Aug-2020 19:43:29 Asia/Tokyo] PHP Warning:  Invalid argument supplied for foreach() in /Applications/MAMP/htdocs/yourself/PHP/index.php on line 66
-[24-Aug-2020 19:43:29 Asia/Tokyo] PHP Notice:  Trying to access array offset on value of type null in /Applications/MAMP/htdocs/yourself/PHP/index.php on line 108
-[24-Aug-2020 19:43:29 Asia/Tokyo] PHP Notice:  Trying to access array offset on value of type null in /Applications/MAMP/htdocs/yourself/PHP/index.php on line 114
-[24-Aug-2020 19:43:29 Asia/Tokyo] PHP Warning:  Invalid argument supplied for foreach() in /Applications/MAMP/htdocs/yourself/PHP/index.php on line 114
-[24-Aug-2020 19:43:29 Asia/Tokyo] PHP Notice:  Trying to access array offset on value of type null in /Applications/MAMP/htdocs/yourself/PHP/index.php on line 133
-[24-Aug-2020 19:43:53 Asia/Tokyo] PHP Notice:  Undefined index: CLEARDB_DATABASE_URL in /Applications/MAMP/htdocs/yourself/PHP/function.php on line 307
-[24-Aug-2020 19:43:53 Asia/Tokyo] PHP Notice:  Undefined index: host in /Applications/MAMP/htdocs/yourself/PHP/function.php on line 309
-[24-Aug-2020 19:43:53 Asia/Tokyo] PHP Notice:  Undefined index: user in /Applications/MAMP/htdocs/yourself/PHP/function.php on line 310
-[24-Aug-2020 19:43:53 Asia/Tokyo] PHP Notice:  Undefined index: pass in /Applications/MAMP/htdocs/yourself/PHP/function.php on line 311
-[24-Aug-2020 19:43:53 Asia/Tokyo] エラー発生：SQLSTATE[HY000] [2002] No such file or directory
-[24-Aug-2020 19:43:53 Asia/Tokyo] PHP Notice:  Undefined index: CLEARDB_DATABASE_URL in /Applications/MAMP/htdocs/yourself/PHP/function.php on line 307
-[24-Aug-2020 19:43:53 Asia/Tokyo] PHP Notice:  Undefined index: host in /Applications/MAMP/htdocs/yourself/PHP/function.php on line 309
-[24-Aug-2020 19:43:53 Asia/Tokyo] PHP Notice:  Undefined index: user in /Applications/MAMP/htdocs/yourself/PHP/function.php on line 310
-[24-Aug-2020 19:43:53 Asia/Tokyo] PHP Notice:  Undefined index: pass in /Applications/MAMP/htdocs/yourself/PHP/function.php on line 311
-[24-Aug-2020 19:43:53 Asia/Tokyo] エラー発生：SQLSTATE[HY000] [2002] No such file or directory
-[24-Aug-2020 19:43:53 Asia/Tokyo] PHP Notice:  Trying to access array offset on value of type null in /Applications/MAMP/htdocs/yourself/PHP/index.php on line 59
-[24-Aug-2020 19:43:53 Asia/Tokyo] PHP Warning:  Invalid argument supplied for foreach() in /Applications/MAMP/htdocs/yourself/PHP/index.php on line 66
-[24-Aug-2020 19:43:53 Asia/Tokyo] PHP Notice:  Trying to access array offset on value of type null in /Applications/MAMP/htdocs/yourself/PHP/index.php on line 108
-[24-Aug-2020 19:43:53 Asia/Tokyo] PHP Notice:  Trying to access array offset on value of type null in /Applications/MAMP/htdocs/yourself/PHP/index.php on line 114
-[24-Aug-2020 19:43:53 Asia/Tokyo] PHP Warning:  Invalid argument supplied for foreach() in /Applications/MAMP/htdocs/yourself/PHP/index.php on line 114
-[24-Aug-2020 19:43:53 Asia/Tokyo] PHP Notice:  Trying to access array offset on value of type null in /Applications/MAMP/htdocs/yourself/PHP/index.php on line 133
