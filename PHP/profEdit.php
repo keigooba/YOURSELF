@@ -330,10 +330,6 @@ require('head.php');
               ?>
             </select>
           </label>
-          <!-- <label>
-            <input type="checkbox" name="company_flg">会社登録する
-            <p class="flg_text">※登録後連絡掲示板が利用できます</p>
-          </label> -->
           <input type="submit" class="btn btn-mid" value="変更する">
         </div>
 			</form>

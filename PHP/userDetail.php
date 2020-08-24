@@ -97,7 +97,7 @@ require('head.php');
         if(!empty($err_msg['common'])) echo $err_msg['common'];
         ?>
       </div>
-      <div class="user__imgframe">
+      <div class="user__imgframe"  style="display;none;">
         <img src="<?php echo showImg(sanitize($viewData['pic'])); ?>" class="img">
         <i class="fa fa-heart icn-like js-click-like <?php if(isLike($_SESSION['user_id'], $viewData['id'])){ echo 'active'; } ?>" aria-hidden="true" data-entryuser_id="<?php echo sanitize($viewData['id']); ?>" ></i>
       </div>
