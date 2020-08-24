@@ -98,7 +98,7 @@ require('head.php');
         ?>
       </div>
       <div class="user__imgframe">
-        <p class="note" style="margin:10px 0;">※詳細情報は登録者にのみ公開されます</p>
+        <p class="note" style="padding-bottom:10px">※詳細情報は登録者にのみ公開されます</p>
         <img src="<?php echo showImg(sanitize($viewData['pic'])); ?>" class="img" style="display;none;">
         <i class="fa fa-heart icn-like js-click-like <?php if(isLike($_SESSION['user_id'], $viewData['id'])){ echo 'active'; } ?>" aria-hidden="true" data-entryuser_id="<?php echo sanitize($viewData['id']); ?>" ></i>
       </div>
