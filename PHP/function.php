@@ -132,28 +132,28 @@ function validEmailDup($email){
   }
 }
 // バリデーション関数（会社登録チェック）
-function validUserCompany($u_id){
-  global $err_msg;
-  //  例外処理
-  try {
-    // DBへの接続
-    $dbh = dbConnect();
-    // SQL文の作成
-    $sql = 'SELECT count(*) FROM users WHERE company_flg = 1 AND id = :u_id AND delete_flg = 0';
-    $data = array(':u_id' => $u_id);
-    //クエリ実行
-    $stmt = queryPost($dbh,$sql,$data);
-    //クエリ結果の値を取得
-    $rst = $stmt->fetch(PDO::FETCH_ASSOC);
-    // 結果が空のとき
-    if(empty(array_shift($rst))){
-      $err_msg['common'] = MSG18;
-    }
-  } catch (Exception $e) {
-    error_log('エラー発生：' .$e->getMessage());
-    $err_msg['common'] = MSG07;
-  }
-}
+// function validUserCompany($u_id){
+//   global $err_msg;
+//   //  例外処理
+//   try {
+//     // DBへの接続
+//     $dbh = dbConnect();
+//     // SQL文の作成
+//     $sql = 'SELECT count(*) FROM users WHERE company_flg = 1 AND id = :u_id AND delete_flg = 0';
+//     $data = array(':u_id' => $u_id);
+//     //クエリ実行
+//     $stmt = queryPost($dbh,$sql,$data);
+//     //クエリ結果の値を取得
+//     $rst = $stmt->fetch(PDO::FETCH_ASSOC);
+//     // 結果が空のとき
+//     if(empty(array_shift($rst))){
+//       $err_msg['common'] = MSG18;
+//     }
+//   } catch (Exception $e) {
+//     error_log('エラー発生：' .$e->getMessage());
+//     $err_msg['common'] = MSG07;
+//   }
+// }
 //バリデーション関数（同値チェック）
 function validMatch($str1, $str2, $key){
   if($str1 !== $str2){
@@ -304,19 +304,38 @@ function isLogin(){
 //================================
 //DB接続関数
 function dbConnect(){
-  $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
-  $db['dbname'] = ltrim($db['path'], '/');
-  $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
-  $user = $db['user'];
-  $password = $db['pass'];
+  //DBへの接続準備
+  $dsn = 'mysql:dbname=yourself;host=localhost;charset=utf8';
+  $user = 'root';
+  $password = 'root';
   $options = array(
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    // SQL実行失敗時にはエラーコードのみ設定
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
+    // デフォルトフェッチモードを連想配列形式に設定
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::MYSQL_ATTR_USE_BUFFERED_QUERY =>true,
+    // バッファードクエリを使う(一度に結果セットをすべて取得し、サーバー負荷を軽減)
+    // SELECTで得た結果に対してもrowCountメソッドを使えるようにする
+    PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true,
   );
-  $dbh = new PDO($dsn,$user,$password,$options);
+  // PDOオブジェクト生成（DBへ接続）
+  $dbh = new PDO($dsn, $user, $password, $options);
   return $dbh;
 }
+//DB接続関数
+// function dbConnect(){
+//   $db = parse_url($_SERVER['CLEARDB_DATABASE_URL']);
+//   $db['dbname'] = ltrim($db['path'], '/');
+//   $dsn = "mysql:host={$db['host']};dbname={$db['dbname']};charset=utf8";
+//   $user = $db['user'];
+//   $password = $db['pass'];
+//   $options = array(
+//     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+//     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+//     PDO::MYSQL_ATTR_USE_BUFFERED_QUERY =>true,
+//   );
+//   $dbh = new PDO($dsn,$user,$password,$options);
+//   return $dbh;
+// }
 //SQL実行関数 例外処理をしていることを強調するため否定形
 function queryPost($dbh, $sql, $data){
   //クエリー作成

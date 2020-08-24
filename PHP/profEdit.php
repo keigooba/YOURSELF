@@ -27,11 +27,11 @@ if(!empty($_POST)){
 	debug('POST送信があります。');
 	debug('POST情報：'.print_r($_POST,true));
 	//ゲストユーザーかどうか確認
-	if($_SESSION['user_id'] == 1){
-		GuestUser();
-		return  header("Location:mypage.php");
-	}
-	debug('ゲストユーザーではありません。');
+	// if($_SESSION['user_id'] == 1){
+	// 	GuestUser();
+	// 	return  header("Location:mypage.php");
+	// }
+	// debug('ゲストユーザーではありません。');
 	//変数にユーザー情報を代入
   $surname=$_POST['surname'];
   var_dump('koko1');
@@ -58,8 +58,8 @@ if(!empty($_POST)){
   var_dump('koko11');
   $category = $_POST['category_id'];
   var_dump('koko12');
-  $company_flg = (!empty($_POST['company_flg'])) ? 1 : 0 ;
-  var_dump('koko13');
+  // $company_flg = (!empty($_POST['company_flg'])) ? 1 : 0 ;
+  // var_dump('koko13');
 
 	//DBの情報と入力情報が異なる場合にバリデーションを行う
 	if($dbFormData['surname'] !==$surname){
@@ -330,10 +330,10 @@ require('head.php');
               ?>
             </select>
           </label>
-          <label>
+          <!-- <label>
             <input type="checkbox" name="company_flg">会社登録する
             <p class="flg_text">※登録後連絡掲示板が利用できます</p>
-          </label>
+          </label> -->
           <input type="submit" class="btn btn-mid" value="変更する">
         </div>
 			</form>

@@ -37,9 +37,9 @@ if(!empty($_POST)){
   debug('POST送信があります。');
 
   //会社登録済みか確認
-  validUserCompany($_SESSION['user_id']);
+  // validUserCompany($_SESSION['user_id']);
 
-  debug('取得したDBデータ：'.print_r(validUserCompany($_SESSION['user_id'])));
+  // debug('取得したDBデータ：'.print_r(validUserCompany($_SESSION['user_id'])));
 
   if(empty($err_msg)){
 

@@ -17,12 +17,12 @@ require('auth.php');
 // 1.post送信されていたとき
 if(!empty($_POST)){
   debug('POST送信があります。');
-  
+
   //変数にユーザー情報を代入
   $name=$_POST['name'];
   $email=$_POST['email'];
   $pass=$_POST['pass'];
-  $pass_save = (!empty($_POST['pass_save'])) ? true : false; 
+  $pass_save = (!empty($_POST['pass_save'])) ? true : false;
 
   //未入力チェック
   validRequired($name,'name');
@@ -36,14 +36,14 @@ if(!empty($_POST)){
 
     //E-mailの形式チェック
     validEmailFormat($email,'email');
-  
+
     //パスワード半角英数チェック
     validHalf($pass,'pass');
     //パスワード最小文字数チェック
     validMinLen($pass,'pass');
-    
+
     if(empty($err_msg)){
-      
+
       try {
         // DBへ接続
         $dbh = dbConnect();
@@ -52,11 +52,11 @@ if(!empty($_POST)){
         $data = array(':name'=>$name, ':email'=>$email);
         // クエリ実行
         $stmt = queryPost($dbh, $sql, $data);
-        // クエリ結果の値を取得 
+        // クエリ結果の値を取得
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         debug('クエリ結果の中身：'.print_r($result,true));
-        
+
         //パスワード照合
         if(!empty($result) && password_verify($pass,array_shift($result))){
           debug('パスワードがマッチしました。');
@@ -97,26 +97,26 @@ if(!empty($_POST)){
  ?>
 <?php
 $siteTitle = 'ログイン';
-require('head.php'); 
+require('head.php');
 ?>
-<?php
-require('header.php');
-?>
-<p id="js-show-msg" style="display:none;" class="msg-slide">
-    <?php echo getSessionFlash('msg_success'); ?>
-</p>
+
 <body>
+  <?php
+  require('header.php');
+  ?>
+  <p id="js-show-msg" style="display:none;" class="msg-slide">
+    <?php echo getSessionFlash('msg_success'); ?>
+  </p>
   <div id="main" class="site-width">
-  <div class="guest-container">
-    ゲストユーザーの方は以下の名前・メールアドレス・パスワードを使用して下さい。
-    <p><i class="fas fa-user-alt"></i>名前：guest</p>
-    <p><i class="far fa-envelope"></i>メールアドレス：guest@mail.com</p>
-    <p><i class="fas fa-unlock-alt"></i>パスワード：guestmail</p>
-  </div>
-  <div id="login" style="margin-top:50px;">
+  <form action="" method="post" class="simple_login" style="width:500px; margin:0 auto; text-align:center;">
+    <input type="hidden" name="name" value="guest">
+    <input type="hidden" name="email" value="guest@mail.com">
+    <input type="hidden" name="pass" value="guestmail">
+    <input type="submit" value="簡易ログイン" style="float:inherit; margin-bottom:50px;">
+  </form>
+  <form action="" method="post" style="width:500px; margin:0 auto;">
     <div id="signup-block"><i class="fas fa-sign-in-alt"></i>ログイン</a></div>
     <div class="area-msg"><?php if(!empty($err_msg['common'])) echo $err_msg['common']; ?></div>
-    <form action="" method="post" style="width:500px; margin:0 auto;">
 
       <label>名前 ※名前のみ入力してください
         <input type="text" name="name" placeholder="名前" value="<?php if(!empty($_POST['name'])) echo $_POST['name'];?>">
@@ -136,11 +136,10 @@ require('header.php');
         <input type="checkbox" name="pass_save">次回ログインを省略する
       </label>
       <input type="submit" value="ログイン">
-      <div  class="passRemind">パスワードを忘れた方は<a href="passRemindSend.php">こちら</a>
-      </div>
-    </form>
-  </div> 
-  </div>
+      <div  class="passRemind">パスワードを忘れた方は<a href="passRemindSend.php">こちら</a></div>
+    </div>
+    </div>
+  </form>
   <?php
   require('footer.php');
   ?>
