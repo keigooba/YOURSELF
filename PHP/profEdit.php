@@ -157,7 +157,6 @@ require('head.php');
 		<div class="text">
 			<h1>プロフィール編集</h1>
 			<div>以下のフォームに詳細情報をご入力ください。</div>
-			<p>※詳細情報は登録者にのみ公開されます</p>
 		</div>
 		<div id="profile">
 			<div class="area-msg">

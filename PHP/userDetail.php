@@ -97,8 +97,9 @@ require('head.php');
         if(!empty($err_msg['common'])) echo $err_msg['common'];
         ?>
       </div>
-      <div class="user__imgframe"  style="display;none;">
-        <img src="<?php echo showImg(sanitize($viewData['pic'])); ?>" class="img">
+      <div class="user__imgframe">
+        <p class="note" style="margin:10px 0;">※詳細情報は登録者にのみ公開されます</p>
+        <img src="<?php echo showImg(sanitize($viewData['pic'])); ?>" class="img" style="display;none;">
         <i class="fa fa-heart icn-like js-click-like <?php if(isLike($_SESSION['user_id'], $viewData['id'])){ echo 'active'; } ?>" aria-hidden="true" data-entryuser_id="<?php echo sanitize($viewData['id']); ?>" ></i>
       </div>
       <table class="user__textbox">
@@ -140,36 +141,6 @@ require('head.php');
             <td colspan="2">
             <?php
             echo sanitize($viewData['email']);
-            ?>
-            </td>
-          </tr>
-          <tr>
-            <th>
-            電話番号
-            </th>
-            <td colspan="2">
-            <?php
-            echo sanitize($viewData['tel']);
-            ?>
-            </td>
-          </tr>
-          <tr>
-            <th>
-            郵便番号
-            </th>
-            <td colspan="2">
-            <?php
-            echo sanitize($viewData['zip']);
-            ?>
-            </td>
-          </tr>
-          <tr>
-            <th>
-            住所
-            </th>
-            <td colspan="2">
-            <?php
-            echo sanitize($viewData['addr']);
             ?>
             </td>
           </tr>

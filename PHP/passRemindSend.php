@@ -64,7 +64,7 @@ if(!empty($_POST)){
 下記のURLにて認証キーをご入力頂くとパスワードが再発行されます。
 
 パスワード再発行認証キー入力ページ：https://yourself8989.herokuapp.com/PHP/passRemindRecieve.php
-認証キー：{$auth_key} 
+認証キー：{$auth_key}
 ※認証キーの有効期限は60分となります
 
 認証キーを再発行されたい場合は下記ページより再度再発行をお願い致します。
@@ -133,7 +133,7 @@ require('head.php');
                     </label>
                     <div class="btn-container">
                     <input type="submit" class="btn btn-mid" value="送信">
-                    </div>     
+                    </div>
                     <a href="login.php">&lt; ログインページに戻る</a>
                 </form>
             </div>
