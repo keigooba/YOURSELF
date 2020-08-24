@@ -4,33 +4,11 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd713f725e4a66d151e43256d8dbeb790
+class ComposerStaticInit150af1b79b07a6c13193cd667376dcb3
 {
-    public static $prefixesPsr0 = array (
-        'U' => 
-        array (
-            'Unirest' => 
-            array (
-                0 => __DIR__ . '/..' . '/mashape/unirest-php/lib',
-            ),
-        ),
-        'S' => 
-        array (
-            'Smtpapi' => 
-            array (
-                0 => __DIR__ . '/..' . '/sendgrid/smtpapi/lib',
-            ),
-            'SendGrid' => 
-            array (
-                0 => __DIR__ . '/..' . '/sendgrid/sendgrid/lib',
-            ),
-        ),
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixesPsr0 = ComposerStaticInitd713f725e4a66d151e43256d8dbeb790::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

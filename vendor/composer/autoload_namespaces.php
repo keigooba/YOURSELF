@@ -6,7 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Unirest' => array($vendorDir . '/mashape/unirest-php/lib'),
-    'Smtpapi' => array($vendorDir . '/sendgrid/smtpapi/lib'),
-    'SendGrid' => array($vendorDir . '/sendgrid/sendgrid/lib'),
 );
