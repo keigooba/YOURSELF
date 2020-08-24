@@ -92,15 +92,8 @@ require('head.php');
           <button type="submit" name="submit" class="contact">連絡掲示板へ</button>
         </form>
       </div>
-      <div class="area-msg">
-        <?php
-        if(!empty($err_msg['common'])) echo $err_msg['common'];
-        ?>
-      </div>
-      <div class="user__imgframe">
-        <p class="note" style="padding-bottom:10px">※詳細情報は登録者にのみ公開されます</p>
-        <img src="<?php echo showImg(sanitize($viewData['pic'])); ?>" class="img" style="display;none;">
-        <i class="fa fa-heart icn-like js-click-like <?php if(isLike($_SESSION['user_id'], $viewData['id'])){ echo 'active'; } ?>" aria-hidden="true" data-entryuser_id="<?php echo sanitize($viewData['id']); ?>" ></i>
+      <div class="user__imgframe" style="padding-bottom:10px">
+        <p class="note">※詳細情報は登録者にのみ公開されます</p>
       </div>
       <table class="user__textbox">
        <tbody>
