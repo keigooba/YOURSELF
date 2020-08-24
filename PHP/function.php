@@ -109,51 +109,51 @@ function validEmailFormat($str, $key){
   }
 }
 //バリデーション関数（Email重複チェック）新しくデータを登録する場合のみ
-function validEmailDup($email){
-  global $err_msg;
-  //例外処理
-  try {
-    // DBへ接続
-    $dbh = dbConnect();
-    // SQL文作成
-    $sql = 'SELECT count(*) FROM users WHERE email = :email AND delete_flg = 0';
-    $data = array(':email' => $email);
-    // クエリ実行
-    $stmt = queryPost($dbh, $sql, $data);
-    // クエリ結果の値を取得
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    //array_shift関数は配列の先頭を取り出す関数です。クエリ結果は配列形式で入っているので、array_shiftで1つ目だけ取り出して判定します
-    if(!empty(array_shift($result))){
-      $err_msg['email'] = MSG08;
-    }
-  } catch (Exception $e) {
-    error_log('エラー発生:' . $e->getMessage());
-    $err_msg['common'] = MSG07;
-  }
-}
-// バリデーション関数（会社登録チェック）
-// function validUserCompany($u_id){
+// function validEmailDup($email){
 //   global $err_msg;
-//   //  例外処理
+//   //例外処理
 //   try {
-//     // DBへの接続
+//     // DBへ接続
 //     $dbh = dbConnect();
-//     // SQL文の作成
-//     $sql = 'SELECT count(*) FROM users WHERE company_flg = 1 AND id = :u_id AND delete_flg = 0';
-//     $data = array(':u_id' => $u_id);
-//     //クエリ実行
-//     $stmt = queryPost($dbh,$sql,$data);
-//     //クエリ結果の値を取得
-//     $rst = $stmt->fetch(PDO::FETCH_ASSOC);
-//     // 結果が空のとき
-//     if(empty(array_shift($rst))){
-//       $err_msg['common'] = MSG18;
+//     // SQL文作成
+//     $sql = 'SELECT count(*) FROM users WHERE email = :email AND delete_flg = 0';
+//     $data = array(':email' => $email);
+//     // クエリ実行
+//     $stmt = queryPost($dbh, $sql, $data);
+//     // クエリ結果の値を取得
+//     $result = $stmt->fetch(PDO::FETCH_ASSOC);
+//     //array_shift関数は配列の先頭を取り出す関数です。クエリ結果は配列形式で入っているので、array_shiftで1つ目だけ取り出して判定します
+//     if(!empty(array_shift($result))){
+//       $err_msg['email'] = MSG08;
 //     }
 //   } catch (Exception $e) {
-//     error_log('エラー発生：' .$e->getMessage());
+//     error_log('エラー発生:' . $e->getMessage());
 //     $err_msg['common'] = MSG07;
 //   }
 // }
+// バリデーション関数（会社登録チェック）
+function validUserCompany($u_id){
+  global $err_msg;
+  //  例外処理
+  try {
+    // DBへの接続
+    $dbh = dbConnect();
+    // SQL文の作成
+    $sql = 'SELECT count(*) FROM users WHERE company_flg = 1 AND id = :u_id AND delete_flg = 0';
+    $data = array(':u_id' => $u_id);
+    //クエリ実行
+    $stmt = queryPost($dbh,$sql,$data);
+    //クエリ結果の値を取得
+    $rst = $stmt->fetch(PDO::FETCH_ASSOC);
+    // 結果が空のとき
+    if(empty(array_shift($rst))){
+      $err_msg['common'] = MSG18;
+    }
+  } catch (Exception $e) {
+    error_log('エラー発生：' .$e->getMessage());
+    $err_msg['common'] = MSG07;
+  }
+}
 //バリデーション関数（同値チェック）
 function validMatch($str1, $str2, $key){
   if($str1 !== $str2){
