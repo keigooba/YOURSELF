@@ -19,7 +19,7 @@ if(!empty($_POST)){
   $email=$_POST['email'];
   $pass=$_POST['pass'];
   $pass_re=$_POST['pass_re'];
-  $company_flg = (!empty($_POST['company_flg'])) ?  1 :  0;
+  // $company_flg = (!empty($_POST['company_flg'])) ?  1 :  0;
 
   //未入力チェック
   validRequired($surname,'surname');
@@ -31,7 +31,7 @@ if(!empty($_POST)){
   validRequired($pass_re,'pass_re');
 
   if(empty($err_msg)){
-    
+
     // 姓名チェック
     validName($surname,'surname');
     // 名前チェック
@@ -61,13 +61,13 @@ if(!empty($_POST)){
         try{
           //DBへ接続
           $dbh=dbConnect();
-          //SQL文作成 
+          //SQL文作成
           $sql='INSERT INTO users (surname,name,surkanaName,kanaName,email,password,company_flg,login_time,create_date) VALUES (:surname,:name,:surkanaName,:kanaName,:email,:pass,:company_flg,:login_time,:create_date)';
           //値を代入
           $data=array(':surname'=>$surname,':name'=>$name,':surkanaName'=>$surkanaName,':kanaName'=>$kanaName,':email'=>$email,':pass'=> password_hash($pass,PASSWORD_DEFAULT),':company_flg' => $company_flg,':login_time'=>date('Y-m-d H:i:s'), ':create_date' => date('Y-m-d H:i:s'));
             //クエリ実行
           $stmt = queryPost($dbh, $sql, $data);
-          
+
           //ログイン有効期限（デフォルトを1時間とする）60秒*X=Y時間
           $sesLimit=60*60;
           //最終ログイン日時を現在日時にする
@@ -77,9 +77,9 @@ if(!empty($_POST)){
           $_SESSION['user_id']=$dbh->lastInsertId();
 
           debug('セッション変数の中身：'.print_r($_SESSION,true));
-          
+
           $_SESSION['msg_success'] = MSG19;
-          
+
           header("Location:mypage.php");
 
         } catch(Exception $e){
@@ -87,13 +87,13 @@ if(!empty($_POST)){
           $err_msg['common']=MSG07;
         }
       }
-    }   
+    }
   }
 }
 ?>
 <?php
 $siteTitle = '新規登録';
-require('head.php'); 
+require('head.php');
 ?>
 <body>
   <?php
@@ -102,7 +102,7 @@ require('head.php');
   <div id="main">
     <div class="signup-wrapper">
       <div class="area-msg">
-        <?php 
+        <?php
         if(!empty($err_msg['common'])) echo $err_msg['common'];
         ?>
       </div>
@@ -141,10 +141,10 @@ require('head.php');
           <input type="password" name="pass_re" placeholder="パスワード(再入力)" value="<?php if(!empty($_POST['pass_re'])) echo $_POST['pass_re'];?> ">
           <div class="err_msg"><?php if(!empty($err_msg['pass_re'])) echo $err_msg['pass_re']; ?></div>
         </label>
-        <label>
+        <!-- <label>
           <input type="checkbox" name="company_flg">会社登録する
           <p class="flg_text">※登録後連絡掲示板が利用できます</p>
-        </label>
+        </label> -->
         <input type="submit" value="登録する">
       </form>
     </div>

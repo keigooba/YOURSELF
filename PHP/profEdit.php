@@ -304,7 +304,7 @@ require('head.php');
 								<input type="hidden" name="MAX_FILE_SIZE" value="3145728">
 								<input type="file" name="pic" class="input-file">
 								<img src="<?php echo getFormData('pic'); ?>" alt="" class="prev-img" style="<?php if(empty(getFormData('pic'))) echo 'display:none;' ?>">
-								ドラッグ&ドロップ
+								<span class="note">※こちらの機能は使うことができません。</span>
 							</label>
 							<div class="area-msg">
 								<?php

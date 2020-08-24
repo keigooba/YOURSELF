@@ -118,7 +118,7 @@ require('head.php');
     <div id="signup-block"><i class="fas fa-sign-in-alt"></i>ログイン</a></div>
     <div class="area-msg"><?php if(!empty($err_msg['common'])) echo $err_msg['common']; ?></div>
 
-      <label>名前 ※名前のみ入力してください
+      <label>名前 <span class="note">※名前のみ入力してください</span>
         <input type="text" name="name" placeholder="名前" value="<?php if(!empty($_POST['name'])) echo $_POST['name'];?>">
         <div class="err_msg"><?php if(!empty($err_msg['name'])) echo $err_msg['name']; ?>
         </div>

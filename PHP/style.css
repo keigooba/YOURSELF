@@ -52,6 +52,12 @@ button{
 .simple_login input[type="submit"] {
   background: orange;
 }
+/* 注意事項 */
+.note {
+  color:red;
+  font-weight: bold;
+  font-size: 20px;
+}
 /* テキスト */
 .text{
   text-align:center;
