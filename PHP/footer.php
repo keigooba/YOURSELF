@@ -48,7 +48,7 @@ $(function(){
     fileReader.readAsDataURL(file);
 
   });
-  // お気に入り登録・削除
+  /// お気に入り登録・削除
   var $like,
           likeEntryuserId;
   $like = $('.js-click-like') || null; //nullというのはnull値という値で、「変数の中身は空ですよ」と明示するためにつかう値
